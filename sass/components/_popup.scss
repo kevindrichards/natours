@@ -1,0 +1,120 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 4000;
+    background-color: rgba($color-black, .8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    
+
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        background-color: rgba($color-black, .3);
+    }
+
+    &:target {
+        opacity: 1;
+        visibility: visible;
+        
+    }
+
+    &:target &__content {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    
+
+
+    &__content {
+        @include absCenter;
+        width: 75%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        border-radius: $border-primary;
+        display: table;
+        overflow: hidden;
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+        transition: all .3s .3s;
+
+        @include respond(tab-land) {
+            width: 90%; 
+        }
+    }
+
+    &__visuals {
+        width: 42%;
+        display: table-cell;
+
+        @include respond(tab-port) {
+            width: 100%; 
+            display: block;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+
+            @include clearFix;
+        }
+
+    }
+
+    &__text {
+        width: 58%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+        backface-visibility: hidden;
+
+        @include respond(tab-port) {
+            width: 100%; 
+            display: block;
+        }
+    }
+
+    &__img {
+        width: 101%;
+        transform: translate(-2px);
+        display: block;
+
+        @include respond(tab-port) {
+            width: 50%; 
+            float: left;
+            transform: translate(0);
+            
+        }
+
+        
+
+    }
+
+
+    &__heading {
+        font-size: 3rem;
+        
+    }
+
+    &__important {
+        font-size: 2rem;
+    }
+
+   
+
+    &__terms {
+        -moz-column-count: 2;
+        -moz-column-gap: 5vw;
+        -moz-column-rule: 1px solid $color-grey-light-2;
+        column-count: 2;
+        column-gap: 5vw;
+        column-rule: 1px solid $color-grey-light-2;
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;   
+        hyphens: auto;
+
+    }
+}

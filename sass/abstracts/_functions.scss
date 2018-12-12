@@ -1,0 +1,4 @@
+//function used to calculate grid widths if gutter-horizontal(margin) is defined
+@function column-width($colnum, $totalcol) {
+    @return calc(#{$colnum} * ((100% - (#{$totalcol} - 1) * #{$gutter-horizontal}) / #{$totalcol}) + (#{$colnum} - 1) * #{$gutter-horizontal});
+}
